@@ -3,7 +3,7 @@
 Shiny app for ADS 506 (Applied Time Series Analytics), Week 5. It compares TSLM, ETS, and ARIMA
 forecasts of monthly Australian wine sales by varietal (1980 to 1994, thousands of litres).
 
-**Live app:** https://<your-account>.shinyapps.io/aus-wine-forecasts/  (fill in after deploying)
+**Live app:** https://01a20708-748f-f3f1-9f6e-5121559eccd4.share.connect.posit.cloud/
 
 **Code:** https://github.com/MaCoiCH-22/aus-wine-forecasts
 
@@ -43,11 +43,12 @@ control, and input debouncing so sliders do not trigger a refit on every movemen
 * `ETS()` and `ARIMA()` are called with no specification, so fable picks the form and orders by AICc.
   `TSLM()` uses `trend() + season()`.
 
-## Deploying to shinyapps.io
+## Deployment
 
-1. Create a free account at shinyapps.io and copy the token command from Account > Tokens.
-2. In R: `rsconnect::setAccountInfo(name = ..., token = ..., secret = ...)` (paste from the site; do not commit it).
-3. From this folder: `rsconnect::deployApp(appName = "aus-wine-forecasts")`.
+Hosted on Posit Connect Cloud, published from this GitHub repo (`main` branch, `app.R`).
+Every push to `main` republishes automatically. `manifest.json` lists the R version and packages
+the server installs; regenerate it after adding a package with
+`rsconnect::writeManifest(".", appFiles = c("app.R", "data/AustralianWines.csv", "README.md"))`.
 
 ## AI use and sources
 
